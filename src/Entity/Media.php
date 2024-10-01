@@ -32,6 +32,9 @@ class Media
     #[ORM\Column]
     private array $staff = [];
 
+    #[ORM\Column]
+    private array $casting = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Media
     public function setStaff(array $staff): static
     {
         $this->staff = $staff;
+
+        return $this;
+    }
+
+    public function getCasting(): array
+    {
+        return $this->casting;
+    }
+
+    public function setCasting(array $casting): static
+    {
+        $this->casting = $casting;
 
         return $this;
     }
