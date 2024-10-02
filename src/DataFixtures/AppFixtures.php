@@ -44,10 +44,11 @@ class AppFixtures extends Fixture
     protected function createSubscriptions(ObjectManager $manager, array $users): void
     {
         for ($m = 0; $m < self::MAX_SUBSCRIPTIONS; $m++) {
+            $duree = 10 * ($m + 1);
             $abonnement = new Subscription();
-            $abonnement->setDuration(duration: 10 * ($m + 1));
-            $abonnement->setName(name: 'Abonnement 10 jours');
-            $abonnement->setPrice(price: 50);
+            $abonnement->setDuration(duration: $duree);
+            $abonnement->setName(name: 'Abonnement ' . $duree . ' jours');
+            $abonnement->setPrice(price: random_int(10, 100));
             $manager->persist(object: $abonnement);
 
             $randomUser = $users[array_rand($users)];
@@ -105,10 +106,11 @@ class AppFixtures extends Fixture
 
     protected function createUser(int $i, ObjectManager $manager): User
     {
+        $password = bin2hex(random_bytes(8));
         $user = new User();
-        $user->setEmail(email: "test_{$i}@example.com");
+        $user->setEmail(email: "test_{$i}@gmail.com");
         $user->setUsername(username: "test_{$i}");
-        $user->setPassword(password: 'coucou');
+        $user->setPassword(password: $password);
         $manager->persist(object: $user);
 
         return $user;
