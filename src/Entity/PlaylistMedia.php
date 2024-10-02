@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\PlaylistMediaRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlaylistMediaRepository::class)]
@@ -14,8 +13,8 @@ class PlaylistMedia
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $added_at = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $addedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'playlistMedia')]
     #[ORM\JoinColumn(nullable: false)]
@@ -30,14 +29,14 @@ class PlaylistMedia
         return $this->id;
     }
 
-    public function getAddedAt(): ?\DateTimeInterface
+    public function getAddedAt(): ?\DateTimeImmutable
     {
-        return $this->added_at;
+        return $this->addedAt;
     }
 
-    public function setAddedAt(\DateTimeInterface $added_at): static
+    public function setAddedAt(\DateTimeImmutable $addedAt): static
     {
-        $this->added_at = $added_at;
+        $this->addedAt = $addedAt;
 
         return $this;
     }

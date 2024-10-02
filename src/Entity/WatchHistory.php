@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\WatchHistoryRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: WatchHistoryRepository::class)]
@@ -14,13 +13,14 @@ class WatchHistory
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $last_watched = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $lastWatchedAt = null;
 
     #[ORM\Column]
-    private ?int $number_of_views = null;
+    private ?int $numberOfViews = null;
 
     #[ORM\ManyToOne(inversedBy: 'watchHistories')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $watcher = null;
 
     #[ORM\ManyToOne(inversedBy: 'watchHistories')]
@@ -32,26 +32,26 @@ class WatchHistory
         return $this->id;
     }
 
-    public function getLastWatched(): ?\DateTimeInterface
+    public function getLastWatchedAt(): ?\DateTimeImmutable
     {
-        return $this->last_watched;
+        return $this->lastWatchedAt;
     }
 
-    public function setLastWatched(\DateTimeInterface $last_watched): static
+    public function setLastWatchedAt(\DateTimeImmutable $lastWatchedAt): static
     {
-        $this->last_watched = $last_watched;
+        $this->lastWatchedAt = $lastWatchedAt;
 
         return $this;
     }
 
     public function getNumberOfViews(): ?int
     {
-        return $this->number_of_views;
+        return $this->numberOfViews;
     }
 
-    public function setNumberOfViews(int $number_of_views): static
+    public function setNumberOfViews(int $numberOfViews): static
     {
-        $this->number_of_views = $number_of_views;
+        $this->numberOfViews = $numberOfViews;
 
         return $this;
     }

@@ -24,17 +24,21 @@ class Comment
     private ?CommentStatusEnum $status = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'childComments')]
-    private ?self $parent_comment = null;
+    private ?self $parentComment = null;
 
     /**
      * @var Collection<int, self>
      */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent_comment')]
+    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parentComment')]
     private Collection $childComments;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $publisher = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Media $media = null;
 
     public function __construct()
     {
@@ -72,12 +76,12 @@ class Comment
 
     public function getParentComment(): ?self
     {
-        return $this->parent_comment;
+        return $this->parentComment;
     }
 
-    public function setParentComment(?self $parent_comment): static
+    public function setParentComment(?self $parentComment): static
     {
-        $this->parent_comment = $parent_comment;
+        $this->parentComment = $parentComment;
 
         return $this;
     }
@@ -120,6 +124,18 @@ class Comment
     public function setPublisher(?User $publisher): static
     {
         $this->publisher = $publisher;
+
+        return $this;
+    }
+
+    public function getMedia(): ?Media
+    {
+        return $this->media;
+    }
+
+    public function setMedia(?Media $media): static
+    {
+        $this->media = $media;
 
         return $this;
     }

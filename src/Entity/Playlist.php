@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\PlaylistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlaylistRepository::class)]
@@ -19,11 +18,17 @@ class Playlist
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $created_at = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $updated_at = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    /**
+     * @var Collection<int, PlaylistSubscription>
+     */
+    #[ORM\OneToMany(targetEntity: PlaylistSubscription::class, mappedBy: 'playlist')]
+    private Collection $playlistSubscriptions;
 
     #[ORM\ManyToOne(inversedBy: 'playlists')]
     #[ORM\JoinColumn(nullable: false)]
@@ -35,16 +40,10 @@ class Playlist
     #[ORM\OneToMany(targetEntity: PlaylistMedia::class, mappedBy: 'playlist')]
     private Collection $playlistMedia;
 
-    /**
-     * @var Collection<int, PlaylistSubscription>
-     */
-    #[ORM\OneToMany(targetEntity: PlaylistSubscription::class, mappedBy: 'playlist')]
-    private Collection $playlistSubscriptions;
-
     public function __construct()
     {
-        $this->playlistMedia = new ArrayCollection();
         $this->playlistSubscriptions = new ArrayCollection();
+        $this->playlistMedia = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,26 +63,56 @@ class Playlist
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): static
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlaylistSubscription>
+     */
+    public function getPlaylistSubscriptions(): Collection
+    {
+        return $this->playlistSubscriptions;
+    }
+
+    public function addPlaylistSubscription(PlaylistSubscription $playlistSubscription): static
+    {
+        if (!$this->playlistSubscriptions->contains($playlistSubscription)) {
+            $this->playlistSubscriptions->add($playlistSubscription);
+            $playlistSubscription->setPlaylist($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlaylistSubscription(PlaylistSubscription $playlistSubscription): static
+    {
+        if ($this->playlistSubscriptions->removeElement($playlistSubscription)) {
+            // set the owning side to null (unless already changed)
+            if ($playlistSubscription->getPlaylist() === $this) {
+                $playlistSubscription->setPlaylist(null);
+            }
+        }
 
         return $this;
     }
@@ -124,36 +153,6 @@ class Playlist
             // set the owning side to null (unless already changed)
             if ($playlistMedium->getPlaylist() === $this) {
                 $playlistMedium->setPlaylist(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, PlaylistSubscription>
-     */
-    public function getPlaylistSubscriptions(): Collection
-    {
-        return $this->playlistSubscriptions;
-    }
-
-    public function addPlaylistSubscription(PlaylistSubscription $playlistSubscription): static
-    {
-        if (!$this->playlistSubscriptions->contains($playlistSubscription)) {
-            $this->playlistSubscriptions->add($playlistSubscription);
-            $playlistSubscription->setPlaylist($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlaylistSubscription(PlaylistSubscription $playlistSubscription): static
-    {
-        if ($this->playlistSubscriptions->removeElement($playlistSubscription)) {
-            // set the owning side to null (unless already changed)
-            if ($playlistSubscription->getPlaylist() === $this) {
-                $playlistSubscription->setPlaylist(null);
             }
         }
 

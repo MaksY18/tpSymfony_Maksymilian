@@ -30,7 +30,7 @@ class User
     private ?UserAccountStatusEnum $accountStatus = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?Subscription $current_subscription = null;
+    private ?Subscription $currentSubscription = null;
 
     /**
      * @var Collection<int, Comment>
@@ -45,6 +45,12 @@ class User
     private Collection $subscriptionHistories;
 
     /**
+     * @var Collection<int, PlaylistSubscription>
+     */
+    #[ORM\OneToMany(targetEntity: PlaylistSubscription::class, mappedBy: 'subscriber')]
+    private Collection $playlistSubscriptions;
+
+    /**
      * @var Collection<int, Playlist>
      */
     #[ORM\OneToMany(targetEntity: Playlist::class, mappedBy: 'creator')]
@@ -56,19 +62,13 @@ class User
     #[ORM\OneToMany(targetEntity: WatchHistory::class, mappedBy: 'watcher')]
     private Collection $watchHistories;
 
-    /**
-     * @var Collection<int, PlaylistSubscription>
-     */
-    #[ORM\OneToMany(targetEntity: PlaylistSubscription::class, mappedBy: 'subscriber')]
-    private Collection $playlistSubscriptions;
-
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->subscriptionHistories = new ArrayCollection();
+        $this->playlistSubscriptions = new ArrayCollection();
         $this->playlists = new ArrayCollection();
         $this->watchHistories = new ArrayCollection();
-        $this->playlistSubscriptions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,12 +126,12 @@ class User
 
     public function getCurrentSubscription(): ?Subscription
     {
-        return $this->current_subscription;
+        return $this->currentSubscription;
     }
 
-    public function setCurrentSubscription(?Subscription $current_subscription): static
+    public function setCurrentSubscription(?Subscription $currentSubscription): static
     {
-        $this->current_subscription = $current_subscription;
+        $this->currentSubscription = $currentSubscription;
 
         return $this;
     }
@@ -197,6 +197,36 @@ class User
     }
 
     /**
+     * @return Collection<int, PlaylistSubscription>
+     */
+    public function getPlaylistSubscriptions(): Collection
+    {
+        return $this->playlistSubscriptions;
+    }
+
+    public function addPlaylistSubscription(PlaylistSubscription $playlistSubscription): static
+    {
+        if (!$this->playlistSubscriptions->contains($playlistSubscription)) {
+            $this->playlistSubscriptions->add($playlistSubscription);
+            $playlistSubscription->setSubscriber($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlaylistSubscription(PlaylistSubscription $playlistSubscription): static
+    {
+        if ($this->playlistSubscriptions->removeElement($playlistSubscription)) {
+            // set the owning side to null (unless already changed)
+            if ($playlistSubscription->getSubscriber() === $this) {
+                $playlistSubscription->setSubscriber(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection<int, Playlist>
      */
     public function getPlaylists(): Collection
@@ -250,36 +280,6 @@ class User
             // set the owning side to null (unless already changed)
             if ($watchHistory->getWatcher() === $this) {
                 $watchHistory->setWatcher(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, PlaylistSubscription>
-     */
-    public function getPlaylistSubscriptions(): Collection
-    {
-        return $this->playlistSubscriptions;
-    }
-
-    public function addPlaylistSubscription(PlaylistSubscription $playlistSubscription): static
-    {
-        if (!$this->playlistSubscriptions->contains($playlistSubscription)) {
-            $this->playlistSubscriptions->add($playlistSubscription);
-            $playlistSubscription->setSubscriber($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlaylistSubscription(PlaylistSubscription $playlistSubscription): static
-    {
-        if ($this->playlistSubscriptions->removeElement($playlistSubscription)) {
-            // set the owning side to null (unless already changed)
-            if ($playlistSubscription->getSubscriber() === $this) {
-                $playlistSubscription->setSubscriber(null);
             }
         }
 
