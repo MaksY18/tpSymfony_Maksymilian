@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\CategorieMedia;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<CategorieMedia>
+ * @extends ServiceEntityRepository<Category>
  */
-class CategorieMediaRepository extends ServiceEntityRepository
+class CategoryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CategorieMedia::class);
+        parent::__construct($registry, Category::class);
     }
 
     //    /**
-    //     * @return CategorieMedia[] Returns an array of CategorieMedia objects
+    //     * @return Category[] Returns an array of Category objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class CategorieMediaRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?CategorieMedia
+    //    public function findOneBySomeField($value): ?Category
     //    {
     //        return $this->createQueryBuilder('c')
     //            ->andWhere('c.exampleField = :val')
