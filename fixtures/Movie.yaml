@@ -19,3 +19,31 @@ App\Entity\Movie:
     long_description: "A group of friends explores various virtual worlds, facing challenges and uncovering secrets that blur the line between reality and imagination."
     release_date: "<dateTime()>"
     cover_image: "https://picsum.photos/seed/picsum3/200/200"
+
+  movie_4:
+    title: "Quantum Realm"
+    short_description: "A scientist ventures into the quantum realm"
+    long_description: "A scientist ventures into the quantum realm, discovering a universe of infinite possibilities and facing challenges that test the limits of human understanding."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum4/200/200"
+
+  movie_5:
+    title: "AI Revolution"
+    short_description: "The rise of sentient machines"
+    long_description: "In a future where AI has become sentient, humans and machines must find a way to coexist, leading to a revolution that changes the course of history."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum5/200/200"
+
+  movie_6:
+    title: "Virtual Reality"
+    short_description: "A new dimension of gaming"
+    long_description: "Gamers are transported into a fully immersive virtual reality game where they must navigate challenges and uncover the truth behind the game's creation."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum6/200/200"
+
+  movie_7:
+    title: "The Last Algorithm"
+    short_description: "A race against time"
+    long_description: "A team of scientists races against time to develop the last algorithm that can save humanity from an impending disaster."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum7/200/200"

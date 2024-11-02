@@ -6,3 +6,51 @@ App\Entity\Category:
   category_adventure:
     nom: "adventure"
     label: "Adventure"
+
+  category_comedy:
+    nom: "comedy"
+    label: "Comedy"
+
+  category_drama:
+    nom: "drama"
+    label: "Drama"
+
+  category_horror:
+    nom: "horror"
+    label: "Horror"
+
+  category_thriller:
+    nom: "thriller"
+    label: "Thriller"
+
+  category_romance:
+    nom: "romance"
+    label: "Romance"
+
+  category_scifi:
+    nom: "scifi"
+    label: "Sci-Fi"
+
+  category_fantasy:
+    nom: "fantasy"
+    label: "Fantasy"
+
+  category_documentary:
+    nom: "documentary"
+    label: "Documentary"
+
+  category_animation:
+    nom: "animation"
+    label: "Animation"
+
+  category_mystery:
+    nom: "mystery"
+    label: "Mystery"
+
+  category_musical:
+    nom: "musical"
+    label: "Musical"
+
+  category_western:
+    nom: "western"
+    label: "Western"

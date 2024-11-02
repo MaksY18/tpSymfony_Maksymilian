@@ -42,3 +42,43 @@ App\Entity\Language:
   lang_ko:
     nom: "한국어"
     code: "KO"
+
+  lang_nl:
+    nom: "Nederlands"
+    code: "NL"
+
+  lang_sv:
+    nom: "Svenska"
+    code: "SV"
+
+  lang_tr:
+    nom: "Türkçe"
+    code: "TR"
+
+  lang_pl:
+    nom: "Polski"
+    code: "PL"
+
+  lang_fi:
+    nom: "Suomi"
+    code: "FI"
+
+  lang_da:
+    nom: "Dansk"
+    code: "DA"
+
+  lang_no:
+    nom: "Norsk"
+    code: "NO"
+
+  lang_el:
+    nom: "Ελληνικά"
+    code: "EL"
+
+  lang_he:
+    nom: "עברית"
+    code: "HE"
+
+  lang_hu:
+    nom: "Magyar"
+    code: "HU"
