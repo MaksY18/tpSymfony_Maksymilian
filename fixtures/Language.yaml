@@ -1,0 +1,44 @@
+App\Entity\Language:
+  lang_fr:
+    nom: "Français"
+    code: "FR"
+
+  lang_en:
+    nom: "English"
+    code: "EN"
+
+  lang_es:
+    nom: "Español"
+    code: "ES"
+
+  lang_de:
+    nom: "Deutsch"
+    code: "DE"
+
+  lang_it:
+    nom: "Italiano"
+    code: "IT"
+
+  lang_pt:
+    nom: "Português"
+    code: "PT"
+
+  lang_ru:
+    nom: "Русский"
+    code: "RU"
+
+  lang_zh:
+    nom: "中文"
+    code: "ZH"
+
+  lang_ja:
+    nom: "日本語"
+    code: "JA"
+
+  lang_ar:
+    nom: "العربية"
+    code: "AR"
+
+  lang_ko:
+    nom: "한국어"
+    code: "KO"

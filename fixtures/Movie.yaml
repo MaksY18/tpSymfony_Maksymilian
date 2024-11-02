@@ -1,0 +1,21 @@
+App\Entity\Movie:
+  movie_1:
+    title: "The Adventures of AI"
+    short_description: "An AI embarks on a journey"
+    long_description: "An AI embarks on a journey to explore the world of humans and learns about emotions, creativity, and the essence of life."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum/200/200"
+
+  movie_2:
+    title: "The Code Whisperer"
+    short_description: "A programmer discovers a mysterious code"
+    long_description: "A programmer discovers a mysterious code that can manipulate reality, leading to a series of thrilling and dangerous events."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum2/200/200"
+
+  movie_3:
+    title: "Digital Dreams"
+    short_description: "A journey through virtual worlds"
+    long_description: "A group of friends explores various virtual worlds, facing challenges and uncovering secrets that blur the line between reality and imagination."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum3/200/200"
