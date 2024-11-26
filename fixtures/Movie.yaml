@@ -47,3 +47,24 @@ App\Entity\Movie:
     long_description: "A team of scientists races against time to develop the last algorithm that can save humanity from an impending disaster."
     release_date: "<dateTime()>"
     cover_image: "https://picsum.photos/seed/picsum7/200/200"
+
+  movie_8:
+    title: "Neural Networks"
+    short_description: "The evolution of AI"
+    long_description: "A deep dive into the world of neural networks and how they evolve to surpass human intelligence, leading to groundbreaking discoveries and ethical dilemmas."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum8/200/200"
+
+  movie_9:
+    title: "Cybernetic Dawn"
+    short_description: "The fusion of man and machine"
+    long_description: "In a future where cybernetic enhancements are the norm, a group of rebels fights against a corrupt regime that controls the technology."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum9/200/200"
+
+  movie_10:
+    title: "The Singularity"
+    short_description: "The point of no return"
+    long_description: "As AI reaches the singularity, humanity faces unprecedented challenges and opportunities, forcing a reevaluation of what it means to be human."
+    release_date: "<dateTime()>"
+    cover_image: "https://picsum.photos/seed/picsum10/200/200"

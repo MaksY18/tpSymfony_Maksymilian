@@ -82,3 +82,43 @@ App\Entity\Language:
   lang_hu:
     nom: "Magyar"
     code: "HU"
+
+  lang_cs:
+    nom: "Čeština"
+    code: "CS"
+
+  lang_sk:
+    nom: "Slovenčina"
+    code: "SK"
+
+  lang_ro:
+    nom: "Română"
+    code: "RO"
+
+  lang_bg:
+    nom: "Български"
+    code: "BG"
+
+  lang_hr:
+    nom: "Hrvatski"
+    code: "HR"
+
+  lang_sr:
+    nom: "Српски"
+    code: "SR"
+
+  lang_sl:
+    nom: "Slovenščina"
+    code: "SL"
+
+  lang_lt:
+    nom: "Lietuvių"
+    code: "LT"
+
+  lang_lv:
+    nom: "Latviešu"
+    code: "LV"
+
+  lang_et:
+    nom: "Eesti"
+    code: "ET"
