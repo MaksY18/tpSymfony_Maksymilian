@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @extends ServiceEntityRepository<Movie>
@@ -14,6 +15,22 @@ class MovieRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Movie::class);
+    }
+
+    /**
+     * Retourne les films les plus populaires
+     *
+     * @param int $maxResults Nombre max de résultats à retourner
+     * @return collection Collection des films les plus populaires
+     */
+    public function findPopularMedia(int $maxResults): Collection {
+        return $this->createQueryBuilder('m')
+            ->leftJoin('m.watchHistory', 'wh')
+            ->groupBy('m.id')
+            ->orderBy('COUNT(wh)', 'DESC')
+            ->setMaxResults($maxResults)
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**
