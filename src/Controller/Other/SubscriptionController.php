@@ -29,7 +29,7 @@ class SubscriptionController extends AbstractController
     ): Response {
         $subscriptions =  $subscriptionRepository->findAll();
 
-        return $this->render('card_subscription.html.twig', [
+        return $this->render('parts/subscriptions/card_subscription.html.twig', [
             'subscriptions' => $subscriptions
         ]);
     }
