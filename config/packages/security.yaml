@@ -18,10 +18,6 @@ security:
                 # where to redirect after logout
                 # target: app_any_route
 
-            role_hierarchy:
-                ROLE_SUPER_ADMIN: ROLE_ADMIN
-                ROLE_ADMIN:       ROLE_USER
-                ROLE_BANNED:
 
             remember_me:
                 secret: '%kernel.secret%'
@@ -36,6 +32,11 @@ security:
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_BANNED:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

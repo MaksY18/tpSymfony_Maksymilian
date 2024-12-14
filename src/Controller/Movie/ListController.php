@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Movie;
 
 use App\Entity\PlaylistSubscription;
 use App\Repository\PlaylistRepository;

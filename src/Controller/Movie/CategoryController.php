@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Other;
+namespace App\Controller\Movie;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
