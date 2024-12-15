@@ -11,6 +11,7 @@ use App\Entity\Subscription;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -19,6 +20,13 @@ class AppFixtures extends Fixture
     public const MAX_SUBSCRIPTIONS = 3;
     public const MAX_MEDIA = 100;
     public const MAX_MEDIA_PER_PLAYLIST = 3;
+
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -106,11 +114,15 @@ class AppFixtures extends Fixture
 
     protected function createUser(int $i, ObjectManager $manager): User
     {
-        $password = bin2hex(random_bytes(8));
         $user = new User();
         $user->setEmail(email: "test_{$i}@gmail.com");
         $user->setUsername(username: "test_{$i}");
-        $user->setPassword(password: $password);
+
+        $hashedPassword = $this->passwordHasher->hashPassword($user, 'password123');
+        $user->setPassword(password: $hashedPassword);
+
+        $user->setRoles(['ROLE_USER']);
+
         $manager->persist(object: $user);
 
         return $user;
