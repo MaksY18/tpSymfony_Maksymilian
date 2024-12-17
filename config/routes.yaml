@@ -4,12 +4,12 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-    app_forgot_password:
-        path: /forgot-password
-        controller: App\Controller\Auth\AuthController::forgotPassword
+    # app_forgot_password:
+    #     path: /forgot-password
+    #     controller: App\Controller\Auth\AuthController::forgotPassword
 
-    app_reset_password:
-        path: /reset-password/{token}
-        controller: App\Controller\Auth\AuthController::resetPassword
-        requirements:
-            token: .+
+    # app_reset_password:
+    #     path: /reset-password/{token}
+    #     controller: App\Controller\Auth\AuthController::resetPassword
+    #     requirements:
+    #         token: .+
